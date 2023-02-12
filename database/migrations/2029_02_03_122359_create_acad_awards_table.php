@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('acad_awards', function (Blueprint $table) {
             $table->id();
-            $table->string('role_name');
+            $table->foreignId('applicant_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('award_name');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('acad_awards');
     }
 };

@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('scholarship_types', function (Blueprint $table) {
+        Schema::create('applicant_addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('schol_type_name');
+            $table->foreignId('applicant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('province');
+            $table->string('city_municipality');
+            $table->string('barangay');
+            $table->string('street');
+            $table->string('zip_code');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scholarship_types');
+        Schema::dropIfExists('applicant_addresses');
     }
 };
